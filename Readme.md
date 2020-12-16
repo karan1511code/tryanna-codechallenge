@@ -19,6 +19,8 @@ how to install node : https://nodejs.org/en/download/
 
 how to install express : $ npm i express
 
+how to install nodemon : $ npm i nodemon
+
 how to install node-fetch : $ npm i node-fetch
 
 how to install cors : $ npm i cors
