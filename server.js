@@ -62,6 +62,7 @@ async function movieInfo()  {
     var comedySum = 0;
     var actionSum = 0;
     var count = 0;
+    var leng = userMap.size;
     customerID.forEach(collectGenre);
     
     //Calculate sum to get Arithmetic Mean (Mean = Sum/number of data points)
@@ -72,52 +73,37 @@ async function movieInfo()  {
             comedySum += val['Comedy']
             actionSum += val['Action']
             count++;
-        }
+            userMap.delete(value);
+        }      
     }
 
-   var meanScores = `{"scores":{"Horror":${horrorSum/count},"Action":${actionSum/count},"Comedy":${comedySum/count}}}`
-    var Horror_max = []
-    var Action_max = []
-    var Comedy_max = []
-    for ( const value of userMap.values()) {
-        Horror_max.push(value['Horror']);
-        Action_max.push(value['Action']);
-        Comedy_max.push(value['Comedy']);
+    //MeanScores of customers with login date equal to or greater than specified.
+    var meanScores = `{"scores":{"Horror":${horrorSum/count},"Action":${actionSum/count},"Comedy":${comedySum/count}}}`
+    
+    //Calculation of remaining category values if date is not mentioned
+    for (const key of userMap.keys()) {
+        var val = userMap.get(key);
+        horrorSum+=val['Horror']
+        comedySum+=val['Comedy']
+        actionSum+=val['Action']
     }
 
-    //Sort the genre scores in to get the highest rated category.
-    Horror_max.sort(function(a,b){return b-a});
-    Action_max.sort(function(a,b){return b-a});
-    Comedy_max.sort(function(a,b){return b-a});
-
-    //  var highestRated = `{"Horror":${Horror_max[0]},"Action":${Action_max[0]},"Comedy":${Comedy_max[0]}}`
-
-    var max = [Horror_max[0],Action_max[0],Comedy_max[0]].sort(function(a,b){return b-a})
-    if(max[0] == Horror_max[0]) {
-       var highestRated = `{"Horror":${max[0]}}`
-    }
-    else if(max[0] == Action_max[0]) {
-        var highestRated = `{"Action":${max[0]}}`
-
-    }
-    else {
-        var highestRated = `{"Comedy":${max[0]}}`
-
-    }
-
+    //MeanScores of customers with no earliest URL parameter.
+    var totalMeanScores = `{"scores":{"Horror":${horrorSum/leng},"Action":${actionSum/leng},"Comedy":${comedySum/leng}}}`
+   
       //If earliest URL parameter is specified. 
       if(req.query.earliest) {
           try {
         res.status(200).send(JSON.parse(meanScores));
           }
           catch(err) {
-              res.status(500).send("500 Internal Server Error!");
+              res.status(500).send("500 Internal Server Error! Date is beyond Range or Invalid");
           }
       }
       //If no parameter is sent.
       else {
           try {
-          res.status(200).send(JSON.parse(highestRated));
+          res.status(200).send(JSON.parse(totalMeanScores));
           }
           catch(err) {
             res.status(500).send("500 Internal Server Error!");
@@ -132,4 +118,6 @@ movieInfo();
 
 //Make the APP listen on the specified port.
 app.listen(port, () => console.log(`listening on localhost : ${port}`));
+
+
 
