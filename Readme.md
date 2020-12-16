@@ -17,9 +17,9 @@ how to install npm : https://www.npmjs.com/get-npm
 
 how to install node : https://nodejs.org/en/download/
 
-how to install express : $ npm i express
-
 how to install nodemon : $ npm i nodemon
+
+how to install express : $ npm i express
 
 how to install node-fetch : $ npm i node-fetch
 
@@ -31,6 +31,8 @@ API Endpoint2 : /api/recommendation/highest_rated?earliest={date}
 
 github Link: https://github.com/karan1511code/tryanna-codechallenge
 
-Heroku App Link:
+Heroku App Link: https://tryanna-code-challenge.herokuapp.com/api/recommendation/highest_rated
 
-To run server : $ nodemon server.js
+Heroku App Link: https://tryanna-code-challenge.herokuapp.com/api/recommendation/highest_rated?earliest=2019-02-2020
+
+To start server :$ nodemon server.js
