@@ -30,3 +30,5 @@ API Endpoint2 : /api/recommendation/highest_rated?earliest={date}
 github Link: https://github.com/karan1511code/tryanna-codechallenge
 
 Heroku App Link:
+
+To run server : $ nodemon server.js
