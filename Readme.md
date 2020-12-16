@@ -27,6 +27,6 @@ API Endpoint1 : /api/recommendation/highest_rated
 
 API Endpoint2 : /api/recommendation/highest_rated?earliest={date}
 
-github Link:
+github Link: https://github.com/karan1511code/tryanna-codechallenge
 
 Heroku App Link:
