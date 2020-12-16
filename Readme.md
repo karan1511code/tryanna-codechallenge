@@ -37,5 +37,5 @@ Heroku App Link: https://tryanna-code-challenge.herokuapp.com/api/recommendation
 
 To start server :$ nodemon server.js
 
-You can change the date as you wish. If the date is invalid or beyond range it throws a status 500 message
+You can change the date as you wish. If the date is invalid or beyond range it throws a status 500 error message
 
